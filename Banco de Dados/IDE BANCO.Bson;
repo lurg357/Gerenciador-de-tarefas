@@ -1,0 +1,26 @@
+using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        // Configuração da conexão com o MongoDB
+        var client = new MongoClient("mongodb://localhost:27017");
+        var database = client.GetDatabase("nome_do_banco");
+        var collection = database.GetCollection<BsonDocument>("nome_da_colecao");
+
+        // Consulta para trazer dados (exemplo: documentos onde a idade é maior que 25)
+        var filter = Builders<BsonDocument>.Filter.Gt("idade", 25);
+        var results = await collection.Find(filter).ToListAsync();
+
+        // Exibir os resultados
+        foreach (var document in results)
+        {
+            Console.WriteLine(document.ToJson());
+        }
+    }
+}

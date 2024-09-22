@@ -1,0 +1,3 @@
+"ConnectionStrings": {
+    "TaskDatabase": "Server=(localdb)\\mssqllocaldb;Database=TaskManager;Trusted_Connection=True;"
+}
